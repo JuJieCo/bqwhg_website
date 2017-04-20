@@ -1,0 +1,123 @@
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<include file="struts-default.xml" />
+	<constant name="struts.objectFactory" value="spring" />
+	<package name="defaultPackage"  namespace="/"  extends="struts-default">
+		 
+	<interceptors>
+		 <!-- 配置自定义的拦截器 -->
+		<interceptor name="fileUpload" class="org.apache.struts2.interceptor.FileUploadInterceptor"/>
+		<interceptor name="authority" class="com.jujie.bqwhg.model.utils.AuthorityInterceptor" />
+		<interceptor name="encode" class="com.jujie.bqwhg.model.utils.EncodeInterceptor" />
+	   <!--  拦截器栈  -->
+		<interceptor-stack name="mydefault">
+			<interceptor-ref name="defaultStack"/>
+			<interceptor-ref name="token">
+				<param name="excludeMethods">login,logout,fileUpload,query*,find*,modify*,delete*,show*</param>
+			</interceptor-ref>
+			<interceptor-ref name="authority"/>  
+			<interceptor-ref name="encode"/>
+		</interceptor-stack>
+	</interceptors> 
+	<default-interceptor-ref name="mydefault" />
+		   
+	<!--定义全局Result-->
+	<global-results>
+		<result name="login">/page/admin/login/login_proxy.jsp</result>
+		<result name="invalid.token">/page/error-500.jsp</result>
+	</global-results>
+	
+	<!-- 网站主页 -->
+	<action name="indexAction" class="com.jujie.bqwhg.struts.action.IndexAction" >
+		<result name="indexpage">/index.jsp</result> 
+		<result name="jbgk">/page/website/jbgk/jbgk.jsp</result>
+		<result name="whhdlist">/page/website/whhd/list.jsp</result>
+		<result name="whhdshow">/page/website/whhd/context.jsp</result>
+		<result name="wxshlist">/page/website/wxsh/list.jsp</result>
+		<result name="wxshshow">/page/website/wxsh/context.jsp</result>
+		<result name="fyzslist">/page/website/fyzs/list.jsp</result>
+		<result name="fyzsshow">/page/website/fyzs/context.jsp</result>
+		<result name="qwltlist">/page/website/qwlt/list.jsp</result>
+		<result name="qwltshow">/page/website/qwlt/context.jsp</result>
+		<result name="yspxlist">/page/website/yspx/list.jsp</result>
+		<result name="yspxshow">/page/website/yspx/context.jsp</result>
+		<result name="gbkwlist">/page/website/gbkw/list.jsp</result>
+		<result name="gbkwshow">/page/website/gbkw/context.jsp</result>
+		<result name="qwlllist">/page/website/qwll/list.jsp</result>
+		<result name="qwllshow">/page/website/qwll/context.jsp</result>
+		<result name="qwzclist">/page/website/qwzc/list.jsp</result>
+		<result name="qwzcshow">/page/website/qwzc/context.jsp</result>
+	</action>
+	
+	<!-- 后台主页 -->
+	<action name="loginAction" class="com.jujie.bqwhg.struts.action.LoginAction">
+		<result name="showAdminLogin">/page/admin/login/login.jsp</result>
+		<result name="index">/page/admin/frame/frame.jsp</result>
+		<result name="logout">/index.jsp</result>
+	</action>
+	
+	<!-- 上传action -->
+	<action name="uploadAction" class="com.jujie.bqwhg.struts.action.UploadAction"></action>
+	
+	<!-- 基本概况 -->
+	<action name="jbgkAction" class="com.jujie.bqwhg.struts.action.JbgkAction">
+		<result name="list">/page/admin/jbgk/list.jsp</result>
+		<result name="modify">/page/admin/jbgk/modify.jsp</result>
+	</action>
+	
+	<!-- 文化活动 -->
+	<action name="whhdAction" class="com.jujie.bqwhg.struts.action.WhhdAction">
+		<result name="list">/page/admin/whhd/list.jsp</result>
+		<result name="modify">/page/admin/whhd/modify.jsp</result>
+	</action>
+	
+	<!-- 文学书画 -->
+	<action name="wxshAction" class="com.jujie.bqwhg.struts.action.WxshAction">
+		<result name="list">/page/admin/wxsh/list.jsp</result>
+		<result name="modify">/page/admin/wxsh/modify.jsp</result>
+	</action>
+	
+	<!-- 非遗展示 -->
+	<action name="fyzsAction" class="com.jujie.bqwhg.struts.action.FyzsAction">
+		<result name="list">/page/admin/fyzs/list.jsp</result>
+		<result name="modify">/page/admin/fyzs/modify.jsp</result>
+	</action>
+	
+	<!-- 群文论坛 -->
+	<action name="qwltAction" class="com.jujie.bqwhg.struts.action.QwltAction">
+		<result name="list">/page/admin/qwlt/list.jsp</result>
+		<result name="modify">/page/admin/qwlt/modify.jsp</result>
+	</action>
+	
+	<!-- 艺术培训 -->
+	<action name="yspxAction" class="com.jujie.bqwhg.struts.action.YspxAction">
+		<result name="list">/page/admin/yspx/list.jsp</result>
+		<result name="modify">/page/admin/yspx/modify.jsp</result>
+	</action>
+	
+	<!-- 馆办刊物 -->
+	<action name="gbkwAction" class="com.jujie.bqwhg.struts.action.GbkwAction">
+		<result name="list">/page/admin/gbkw/list.jsp</result>
+		<result name="modify">/page/admin/gbkw/modify.jsp</result>
+	</action>
+	
+	<!-- 群文理论 -->
+	<action name="qwllAction" class="com.jujie.bqwhg.struts.action.QwllAction">
+		<result name="list">/page/admin/qwll/list.jsp</result>
+		<result name="modify">/page/admin/qwll/modify.jsp</result>
+	</action>
+	
+	<!-- 群文政策 -->
+	<action name="qwzcAction" class="com.jujie.bqwhg.struts.action.QwzcAction">
+		<result name="list">/page/admin/qwzc/list.jsp</result>
+		<result name="modify">/page/admin/qwzc/modify.jsp</result>
+	</action>
+	
+	<!-- 人员信息 -->
+	<action name=""></action>
+	
+	</package>
+	
+</struts>

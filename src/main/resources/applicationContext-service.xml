@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans    
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd    
+    http://www.springframework.org/schema/context   
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd    
+    http://www.springframework.org/schema/aop    
+    http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+    http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+   <!-- property name和Service类中所用到的set方法的属性名相同 ref 则必须引用已经配置好的DAO Bean -->
+   
+   
+	<bean id="indexService" class="com.jujie.bqwhg.model.service.IndexService">
+		 <property name="jbgkDAOServ" ref="jbgkDAO"></property>
+		 <property name="whhdDAOServ" ref="whhdDAO"></property>
+		 <property name="wxshDAOServ" ref="wxshDAO"></property>
+		 <property name="fyzsDAOServ" ref="fyzsDAO"></property>
+		 <property name="qwltDAOServ" ref="qwltDAO"></property>
+		 <property name="yspxDAOServ" ref="yspxDAO"></property>
+		 <property name="gbkwDAOServ" ref="gbkwDAO"></property>
+		 <property name="qwllDAOServ" ref="qwllDAO"></property>
+		 <property name="qwzcDAOServ" ref="qwzcDAO"></property>
+	</bean>
+	
+	<bean id="loginService" class="com.jujie.bqwhg.model.service.LoginService">
+		<property name="loginDAOServ" ref="loginDAO"></property>
+	</bean>
+	
+	<bean id="sysUserService" class="com.jujie.bqwhg.model.service.SysUserService">
+		<property name="sysUserDAOServ" ref="sysUserDAO"></property>
+	</bean>
+	
+	<bean id="jbgkService" class="com.jujie.bqwhg.model.service.JbgkService">
+		<property name="jbgkDAOServ" ref="jbgkDAO"></property>
+	</bean>
+	
+	<bean id="whhdService" class="com.jujie.bqwhg.model.service.WhhdService">
+		<property name="whhdDAOServ" ref="whhdDAO"></property>
+	</bean>
+	
+	<bean id="wxshService" class="com.jujie.bqwhg.model.service.WxshService">
+		<property name="wxshDAOServ" ref="wxshDAO"></property>
+	</bean>
+	
+	<bean id="fyzsService" class="com.jujie.bqwhg.model.service.FyzsService">
+		<property name="fyzsDAOServ" ref="fyzsDAO"></property>
+	</bean>
+	
+	<bean id="qwltService" class="com.jujie.bqwhg.model.service.QwltService">
+		<property name="qwltDAOServ" ref="qwltDAO"></property>
+	</bean>
+	
+	<bean id="yspxService" class="com.jujie.bqwhg.model.service.YspxService">
+		<property name="yspxDAOServ" ref="yspxDAO"></property>
+	</bean>
+	
+	<bean id="gbkwService" class="com.jujie.bqwhg.model.service.GbkwService">
+		<property name="gbkwDAOServ" ref="gbkwDAO"></property>
+	</bean>
+	
+	<bean id="qwllService" class="com.jujie.bqwhg.model.service.QwllService">
+		<property name="qwllDAOServ" ref="qwllDAO"></property>
+	</bean>
+	
+	<bean id="qwzcService" class="com.jujie.bqwhg.model.service.QwzcService">
+		<property name="qwzcDAOServ" ref="qwzcDAO"></property>
+	</bean>
+	  
+</beans>
